@@ -1,6 +1,4 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,12 +11,18 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
     public Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
     private Vector3 velocity = Vector3.zero;
 
     private void FixedUpdate()
     {
         float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         MovePlayer(horizontalMovement);
+        Flip();
+
+        float characterVelocity = Mathf.Abs(rb.velocity.x);
+        animator.SetFloat("Speed", characterVelocity);
     }
 
     private void Update()
@@ -40,6 +44,18 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce));
             isJumping = false;
+        }
+    }
+
+    private void Flip()
+    {
+        if (rb.velocity.x < -0.1f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
         }
     }
 }
