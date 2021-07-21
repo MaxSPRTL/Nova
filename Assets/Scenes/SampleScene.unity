@@ -313,6 +313,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 2006790452}
+  isInvincible: 0
+  spriteRenderer: {fileID: 93356938}
 --- !u!1 &254082230
 GameObject:
   m_ObjectHideFlags: 0
@@ -15968,6 +15970,7 @@ MonoBehaviour:
   - {fileID: 376194494}
   - {fileID: 1629980473}
   graphics: {fileID: 1870745055}
+  damage: 20
 --- !u!95 &1870745059
 Animator:
   serializedVersion: 3

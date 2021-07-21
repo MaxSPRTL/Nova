@@ -7,6 +7,7 @@ public class EnnemyPatrol : MonoBehaviour
     public SpriteRenderer graphics;
     private Transform target;
     private int destPoint = 0;
+    public int damage = 20;
 
     void Start()
     {
@@ -22,6 +23,15 @@ public class EnnemyPatrol : MonoBehaviour
             destPoint = (destPoint + 1) % waypoints.Length;
             target = waypoints[destPoint];
             graphics.flipX = !graphics.flipX;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(damage);
         }
     }
 }
